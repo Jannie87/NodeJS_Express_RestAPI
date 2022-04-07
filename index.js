@@ -3,32 +3,52 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
-app.use("/", (req, res, next) => {
-  console.log("api visited");
-  next();
-});
 
 app.use("/", express.static("public"));
 const todos = [
   {
-    name: "Uppgift 1",
+    id: 1,
+    name: "Fika",
+    place: "ExpressoHouse",
+    time: "18:00",
   },
   {
-    name: "Uppgift 2",
+    id: 2,
+    name: "Möte",
+    place: "Kontoret",
+    time: "09:00",
   },
   {
-    name: "Uppgift 3",
+    id: 3,
+    name: "Lunch",
+    place: "Göteborg",
+    time: "12:00",
   },
 ];
 
 app.get("/api/todo", (req, res) => {
+  console.log(todos);
   res.json(todos);
+  res.status(200);
 });
 
 app.post("/api/todo", (req, res) => {
   console.log(req.body);
   todos.push(req.body);
-  res.status(201).send("Todo tillagd");
+  req.body;
+  res.send("Ny uppgift tillagd");
+});
+
+app.put("/api/todo/:4", (req, res) => {
+  todos.pop(todos);
+  todos.push(req.body);
+  res.send("Uppdatering genomförd");
+});
+
+app.delete("/api/todo/id", (req, res) => {
+  console.log(req.body);
+  todos.pop(req.body);
+  res.send("Uppgift borttagen");
 });
 
 app.listen(port, () => {

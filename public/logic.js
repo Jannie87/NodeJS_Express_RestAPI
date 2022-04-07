@@ -1,4 +1,4 @@
-document.getElementsByID("get").addEventListener("click", async (event) => {
+document.getElementsById("get")[0].addEventListener("click", async (event) => {
   let todos = await getTodos();
   console.log(todos);
 });
