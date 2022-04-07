@@ -5,6 +5,7 @@ const port = 3000;
 app.use(express.json());
 
 app.use("/", express.static("public"));
+
 const todos = [
   {
     id: 1,
@@ -26,29 +27,44 @@ const todos = [
   },
 ];
 
-app.get("/api/todo", (req, res) => {
+app.get("/api/todos/", (req, res) => {
   console.log(todos);
   res.json(todos);
   res.status(200);
 });
 
-app.post("/api/todo", (req, res) => {
+app.post("/api/todos", (req, res) => {
   console.log(req.body);
   todos.push(req.body);
   req.body;
   res.send("Ny uppgift tillagd");
 });
 
-app.put("/api/todo/id/4", (req, res) => {
-  todos.pop(todos);
-  todos.push(req.body);
-  res.send("Uppdatering genomförd");
+app.put("/api/todos/:id", (req, res) => {
+  const id = req.params.id;
+  if (!id) {
+    res.status(404);
+  } else {
+    const update = {
+      id: 4,
+      name: "Tandläkare",
+      place: "Göteborg",
+      time: "17:00",
+    };
+    todos.splice(3, 1, update);
+    req.body;
+    console.log(req.body);
+
+    res.send("Uppdatering genomförd");
+  }
 });
 
-app.delete("/api/todo/id", (req, res) => {
-  console.log(req.body);
-  todos.pop(req.body);
+app.delete("/api/todos/:id", (req, res) => {
+  req.params.id;
+  todos.splice(3, 1);
   res.send("Uppgift borttagen");
+  console.log(req.body);
+  res.status(500).send("Sorry can't find that!");
 });
 
 app.listen(port, () => {
