@@ -1,6 +1,10 @@
+
 GET http://localhost:3000/api/todo
 
+//Fetches all 
+
 ###
+
 
 POST http://localhost:3000/api/todo/
 Content-Type: application/json
@@ -13,8 +17,11 @@ Content-Type: application/json
    
     
 }
+//Adds a new post
+
 ###
-PUT http://localhost:3000/api/todo/:4
+
+PUT http://localhost:3000/api/todo/id/4
 Content-Type: application/json
 
 {   "id": 4,
@@ -24,6 +31,11 @@ Content-Type: application/json
   
     
 }
+//Updates the last one
 
 ###
+
 DELETE  http://localhost:3000/api/todo/id/
+
+//Removes the last one
+

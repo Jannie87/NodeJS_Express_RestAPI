@@ -39,7 +39,7 @@ app.post("/api/todo", (req, res) => {
   res.send("Ny uppgift tillagd");
 });
 
-app.put("/api/todo/:4", (req, res) => {
+app.put("/api/todo/id/4", (req, res) => {
   todos.pop(todos);
   todos.push(req.body);
   res.send("Uppdatering genomförd");
