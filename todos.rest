@@ -1,41 +1,26 @@
 
-GET http://localhost:3000/api/todo
-
+GET http://localhost:3000/api/todos/
 //Fetches all 
 
 ###
 
-
-POST http://localhost:3000/api/todo/
+POST http://localhost:3000/api/todos/
 Content-Type: application/json
 
 {   "id": 4,
     "name": "Tandläkare",
     "place": "Göteborg",
-    "time": "16:00"
-   
-   
-    
+    "time": "16:00"    
 }
 //Adds a new post
 
 ###
 
-PUT http://localhost:3000/api/todo/id/4
-Content-Type: application/json
-
-{   "id": 4,
-    "name": "Tandläkare",
-     "place": "Göteborg",
-    "time": "17:00"
-  
-    
-}
-//Updates the last one
+PUT http://localhost:3000/api/todos/:id
+//Updates a specific index
 
 ###
 
-DELETE  http://localhost:3000/api/todo/id/
-
-//Removes the last one
+DELETE  http://localhost:3000/api/todos/:id/
+//Removes a specific index.
 
