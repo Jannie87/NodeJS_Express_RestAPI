@@ -28,9 +28,14 @@ const todos = [
 ];
 
 app.get("/api/todos/", (req, res) => {
-  console.log(todos);
-  res.json(todos);
-  res.status(200);
+  if (todos.length === 0) {
+    console.log("Error");
+    res.status(404).send("Inga uppgifter hittades");
+  } else {
+    console.log(todos);
+    res.json(todos);
+    res.status(200);
+  }
 });
 
 app.post("/api/todos", (req, res) => {
@@ -42,24 +47,34 @@ app.post("/api/todos", (req, res) => {
 
 app.put("/api/todos/:id", (req, res) => {
   const id = req.params.id;
-  const update = {
-    id: 4,
-    name: "Tandläkare",
-    place: "Göteborg",
-    time: "17:00",
-  };
-  todos.splice(3, 1, update);
-  req.body;
-  console.log(req.body);
+  if (todos.id !== 3) {
+    console.log("Error");
+    res.status(404).send("Uppgiften hittades ej");
+  } else {
+    const update = {
+      id: 4,
+      name: "Tandläkare",
+      place: "Göteborg",
+      time: "17:00",
+    };
+    todos.splice(3, 1, update);
+    req.body;
+    console.log(req.body);
 
-  res.send("Uppdatering genomförd");
+    res.send("Uppdatering genomförd");
+  }
 });
 
 app.delete("/api/todos/:id", (req, res) => {
   req.params.id;
-  todos.splice(3, 1);
-  res.send("Uppgift borttagen");
-  console.log(req.body);
+  if (todos.id !== 3) {
+    console.log("Error");
+    res.status(404).send("Ingen uppgift togs bort");
+  } else {
+    todos.splice(3, 1);
+    res.send("Uppgift borttagen");
+    console.log(req.body);
+  }
 });
 
 app.listen(port, () => {
