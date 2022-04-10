@@ -42,21 +42,17 @@ app.post("/api/todos", (req, res) => {
 
 app.put("/api/todos/:id", (req, res) => {
   const id = req.params.id;
-  if (!id) {
-    res.status(404);
-  } else {
-    const update = {
-      id: 4,
-      name: "Tandläkare",
-      place: "Göteborg",
-      time: "17:00",
-    };
-    todos.splice(3, 1, update);
-    req.body;
-    console.log(req.body);
+  const update = {
+    id: 4,
+    name: "Tandläkare",
+    place: "Göteborg",
+    time: "17:00",
+  };
+  todos.splice(3, 1, update);
+  req.body;
+  console.log(req.body);
 
-    res.send("Uppdatering genomförd");
-  }
+  res.send("Uppdatering genomförd");
 });
 
 app.delete("/api/todos/:id", (req, res) => {
@@ -64,7 +60,6 @@ app.delete("/api/todos/:id", (req, res) => {
   todos.splice(3, 1);
   res.send("Uppgift borttagen");
   console.log(req.body);
-  res.status(500).send("Sorry can't find that!");
 });
 
 app.listen(port, () => {
