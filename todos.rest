@@ -16,11 +16,23 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/todos/:id
+PUT http://localhost:3000/api/todos/3/
+Content-Type: application/application/json
+
+  {
+   
+      "name": "Tandläkare",
+      "place": "Göteborg",
+      "time": "17:00",
+    };
+
 //Updates a specific index
+
+
+// Uppdaterar idnummret till en sträng.. i id 3 " fika" , varför?
 
 ###
 
-DELETE  http://localhost:3000/api/todos/:id/
+DELETE  http://localhost:3000/api/todos/3
 //Removes a specific index.
 
