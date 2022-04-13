@@ -41,30 +41,30 @@ app.get("/api/todos/", (req, res) => {
 app.post("/api/todos", (req, res) => {
   console.log(req.body);
   todos.push(req.body);
-  req.body;
   res.send("Ny uppgift tillagd");
 });
 
 app.put("/api/todos/:id", (req, res) => {
-  const id = todos.find((todo) => (todo.id = req.params.id));
+  parseInt(req.params.id);
+
   if (todos.id === -1) {
     console.log("Error");
     res.status(404).send("Uppgiften hittades ej");
   } else {
-    // const update = {
-    //   id: 4,
-    //   name: "Tandläkare",
-    //   place: "Göteborg",
-    //   time: "17:00",
-    // };
-    todos.splice(3, 1);
+    const update = {
+      id: 4,
+      name: "Tandläkare",
+      place: "Mölndal",
+      time: "17:00",
+    };
+    todos.splice(3, 1, update);
     req.body;
     console.log(req.body);
 
     res.send("Uppdatering genomförd");
   }
 });
-
+//removes one item
 app.delete("/api/todos/:id", (req, res) => {
   req.params.id;
   if (todos.id === -1) {
