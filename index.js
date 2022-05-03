@@ -4,9 +4,7 @@ const port = 3000;
 const { v4: uuidv4 } = require("uuid");
 app.use(express.json());
 
-app.use("/", express.static("public"));
-
-const todos = [
+let todos = [
   {
     name: "Fika",
     place: "ExpressoHouse",
@@ -28,40 +26,40 @@ const todos = [
 ];
 
 app.get("/api/todos/", (req, res) => {
-  res.json(todos);
-  res.status(200);
+  res.status(200).json(todos);
 });
 
 app.post("/api/todos", (req, res) => {
   const todo = req.body;
-  res.status(200);
   todos.push({ ...todo, id: uuidv4() });
-  res.send("Ny uppgift tillagd");
+  res.status(200).send("Ny uppgift tillagd");
 });
 
-app.put("/api/todos/:id", (req, res) => {
-  const todoId = req.params.id;
-  todos.find((todo) => todo.id === todoId);
-  if (!todoId) {
-    res.status(404).send("ingen uppgift hittades");
-    console.log(error);
-  } else {
-    todos.splice(2, 1, { ...req.body });
-    res.send("Uppdatering genomförd");
-    console.log(req.body);
+app.put("/api/todos", (req, res) => {
+  const { id, name, place, time } = req.body;
+  let index = todos.findIndex((todo) => todo.id === id);
+
+  if (index === -1) {
+    return res.status(404).send("Ingen uppgift hittades");
   }
+
+  todos[index] = req.body;
+  res.send("Uppdatering genomförd!");
 });
 
 //removes one item
 app.delete("/api/todos/:id", (req, res) => {
   const todoId = req.params.id;
-  if (todos.id === todoId) {
-    console.log("Error");
+  const todoExist = todos.find((todo) => todo.id === todoId);
+
+  if (!todoExist) {
     res.status(404).send("Ingen uppgift togs bort");
   } else {
-    todos.splice(1, 1);
+    todos = todos.filter(function (todo) {
+      return todo.id !== todoId;
+    });
+    res.status(200).json;
     res.send("Uppgift borttagen");
-    console.log(req.body);
   }
 });
 
