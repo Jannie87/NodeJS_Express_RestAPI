@@ -7,7 +7,7 @@ GET http://localhost:3000/api/todos/
 POST http://localhost:3000/api/todos/
 Content-Type: application/json
 
-{   "id": 4,
+{   
     "name": "Tandläkare",
     "place": "Göteborg",
     "time": "16:00"    
@@ -16,15 +16,21 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/todos/3/
-Content-Type: application/application/json
-//Updates a specific index
+PUT http://localhost:3000/api/todos/
+Content-Type: application/json
 
+{
+    
+    "name": "Träning",
+    "place": "Varberg",
+    "time": "14:00",
+    "id": "d24676ae-d5cc-46f6-877c-63ef6ce0d4c9"            
+}
 
 
 
 ###
 
-DELETE  http://localhost:3000/api/todos/3
+DELETE  http://localhost:3000/api/todos/323faee3-404e-46cc-b2e4-4bcf09ca9926
 //Removes a specific index.
 
